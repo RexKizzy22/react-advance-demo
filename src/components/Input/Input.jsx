@@ -1,35 +1,39 @@
 import React, { useRef, useImperativeHandle, forwardRef } from "react";
 
-const Input = forwardRef(({ label, type, isValid, classes, onChange, onBlur }, ref) => {
-  const inputRef = useRef();
+import classes from "./Input.module.css";
 
-  const activate = () => {
-    inputRef.current.focus();
-  }
+const Input = forwardRef(
+  ({ label, type, isValid, onChange, onBlur }, ref) => {
+    const inputRef = useRef();
 
-  useImperativeHandle(ref, () => {
+    const activate = () => {
+      inputRef.current.focus();
+    };
+
+    useImperativeHandle(ref, () => {
       return {
-          focus: activate
+        focus: activate,
       };
-  });
+    });
 
-  return (
-    <div
-      className={`${classes.control} ${
-        isValid.isValid === false ? classes.invalid : ""
-      }`}
-    >
-      <label htmlFor={type}>{label}</label>
-      <input
-        ref={inputRef}
-        type={type}
-        id={type}
-        value={isValid.value}
-        onChange={onChange}
-        onBlur={onBlur}
-      />
-    </div>
-  );
-});
+    return (
+      <div
+        className={`${classes.control} ${
+          isValid.isValid === false ? classes.invalid : ""
+        }`}
+      >
+        <label htmlFor={type}>{label}</label>
+        <input
+          ref={inputRef}
+          type={type}
+          id={type}
+          value={isValid.value}
+          onChange={onChange}
+          onBlur={onBlur}
+        />
+      </div>
+    );
+  }
+);
 
 export default Input;

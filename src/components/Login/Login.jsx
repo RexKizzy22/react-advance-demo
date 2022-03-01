@@ -33,7 +33,7 @@ const passwordReducer = (state, action) => {
 
 const Login = () => {
   const authCtx = useContext(AuthContext);
-  
+
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
@@ -96,7 +96,6 @@ const Login = () => {
           label="E-Mail"
           type="email"
           isValid={email}
-          classes={classes}
           onChange={emailChangeHandler}
           onBlur={validateEmailHandler}
         />
@@ -105,7 +104,6 @@ const Login = () => {
           label="Password"
           type="password"
           isValid={password}
-          classes={classes}
           onChange={passwordChangeHandler}
           onBlur={validatePasswordHandler}
         />
